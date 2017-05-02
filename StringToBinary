@@ -1,0 +1,22 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<sys/stat.h>
+
+int main()
+{
+	struct stat j;
+	stat("string.txt" ,&j);
+	int size = (j.st_size-1);
+	unsigned char buffer[size];	
+	
+	FILE *k = fopen("string.txt","r"); 
+	fread(buffer,sizeof(buffer),1,k); 
+
+	FILE *write_ptr = fopen("binary.bin","wb"); 
+	fwrite(buffer,sizeof(buffer),1,write_ptr);
+
+
+
+	fclose(write_ptr);
+	fclose(k);
+}
